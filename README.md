@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 📧 Smart Email Classifier: Classifying emails using Natural Language Processing (NLP)
 
 [![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://python.org)
@@ -139,3 +140,19 @@ Mohammed Golam Kaisar Hossain Bhuyan
 🔗 [LinkedIn](https://www.linkedin.com/in/kaisarhossain) | [GitHub](https://github.com/kaisarhossain)
 
 ---
+=======
+---
+title: Smart Email Classification App
+emoji: 🐢
+colorFrom: indigo
+colorTo: green
+sdk: gradio
+sdk_version: 5.49.1
+app_file: app.py
+pinned: false
+license: apache-2.0
+short_description: Smart-Email-Classification-App
+---
+
+Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
+>>>>>>> f3f984eb444ce50d2f26830c247442faab422fb5
