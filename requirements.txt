@@ -108,7 +108,8 @@ six==1.17.0
     # via python-dateutil
 smmap==5.0.2
     # via gitdb
-streamlit==1.50.0
+#streamlit==1.50.0
+streamlit>=1.26.0
     # via smart-email-classification-app (pyproject.toml)
 sympy==1.14.0
     # via torch
@@ -118,7 +119,8 @@ tokenizers==0.22.1
     # via transformers
 toml==0.10.2
     # via streamlit
-torch==2.9.0
+#torch==2.9.0
+torch>=2.2.0
     # via smart-email-classification-app (pyproject.toml)
 tornado==6.5.2
     # via streamlit
@@ -126,7 +128,8 @@ tqdm==4.67.1
     # via
     #   huggingface-hub
     #   transformers
-transformers==4.57.1
+#transformers==4.57.1
+transformers==4.35.0
     # via smart-email-classification-app (pyproject.toml)
 typing-extensions==4.15.0
     # via

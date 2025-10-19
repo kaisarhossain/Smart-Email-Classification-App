@@ -6,35 +6,7 @@ import os
 from huggingface_hub import login
 import numpy as np
 
-# 1. Load Environment Variables
-load_dotenv()
-HF_TOKEN = os.getenv("HF_TOKEN")
-MODEL_REPO = os.getenv("MODEL_REPO", "kaisarhossain/email_classifier_model")  # default fallback
-
-# Login to Hugging Face (optional if model is public)
-if HF_TOKEN:
-    login(token=HF_TOKEN)
-
-# 2. Load Model & Tokenizer
-@st.cache_resource(show_spinner=True)
-def load_model():
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_REPO)
-    model = AutoModelForSequenceClassification.from_pretrained(MODEL_REPO)
-    return tokenizer, model
-
-tokenizer, model = load_model()
-
-# Define the label schema
-LABELS = [
-    "Promotions",
-    "Spam",
-    "Social Media Updates",
-    "Forum Updates",
-    "Code Verification",
-    "Work Updates"
-]
-
-# 3. Streamlit App Configuration
+# 1. Streamlit App Configuration
 st.set_page_config(
     page_title="Email Classifier using NLP",
     page_icon="📧",
@@ -70,6 +42,35 @@ st.markdown("""
 
 st.markdown("<h1 class='main-title'>📧 Smart Email Classifier</h1>", unsafe_allow_html=True)
 st.markdown("<p class='sub-title'>The Smart Email Classifier application is capable of classifying emails of different types based on email subject or body using advanced Natural Language Processing (NLP) techniques and using a fine-tuned NLP model.</p>", unsafe_allow_html=True)
+
+
+# 2. Load Environment Variables
+load_dotenv()
+HF_TOKEN = os.getenv("HF_TOKEN")
+MODEL_REPO = os.getenv("MODEL_REPO", "kaisarhossain/email_classifier_model")  # default fallback
+
+# Login to Hugging Face (optional if model is public)
+if HF_TOKEN:
+    login(token=HF_TOKEN)
+
+# 3. Load Model & Tokenizer
+@st.cache_resource(show_spinner=True)
+def load_model():
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_REPO)
+    model = AutoModelForSequenceClassification.from_pretrained(MODEL_REPO)
+    return tokenizer, model
+
+tokenizer, model = load_model()
+
+# Define the label schema
+LABELS = [
+    "Promotions",
+    "Spam",
+    "Social Media Updates",
+    "Forum Updates",
+    "Code Verification",
+    "Work Updates"
+]
 
 # 4. User Input Section
 with st.container():
