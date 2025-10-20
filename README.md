@@ -1,4 +1,14 @@
-<<<<<<< HEAD
+---
+title: {{title}}
+emoji: {{emoji}}
+colorFrom: {{colorFrom}}
+colorTo: {{colorTo}}
+sdk: {{sdk}}
+sdk_version: "{{sdkVersion}}"
+app_file: app_v1.py
+pinned: false
+---
+
 # 📧 Smart Email Classifier: Classifying emails using Natural Language Processing (NLP)
 
 [![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://python.org)
@@ -63,7 +73,7 @@ MODEL_REPO=kaisarhossain/email-classifier-distilbert-finetuned-kaisar
 ## ▶️ Run the App Locally
 
 ```bash
-streamlit run app.py
+streamlit run app_v1.py
 ```
 
 The app will launch automatically in your browser at:
