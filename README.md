@@ -125,6 +125,8 @@ CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0
 - Create a new **Hugging Face Space** → Select **Docker** as the SDK.  
 - Connect your **GitHub repository** or upload the project manually.  
 - Hugging Face automatically builds and runs your app.
+- In case if you face to push HF deployment using Git, I would highly recommend to check my below Git reference for HF deployment document:
+  - https://github.com/kaisarhossain/Git-Reference-for-Hugging-Face-HF-GitHub-Deployments/tree/main
 
 ---
 
