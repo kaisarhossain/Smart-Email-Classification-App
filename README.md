@@ -5,7 +5,7 @@ colorFrom: {{colorFrom}}
 colorTo: {{colorTo}}
 sdk: {{sdk}}
 sdk_version: "{{sdkVersion}}"
-app_file: app_v1.py
+app_file: app.py
 pinned: false
 ---
 
@@ -17,6 +17,7 @@ pinned: false
 
 > **Smart Email Classifier application is your companion to classify emails of different types based on email subject or body using advanced Natural Language Processing (NLP) techniques and fine-tuned model.**
 
+## ▶️ Run the App: https://huggingface.co/spaces/kaisarhossain/Smart-Email-Classification-App
 
 ## 🧠 Categories
 - 📢 **Promotions**
@@ -31,13 +32,14 @@ pinned: false
 ## 🧩 Project Structure
 
 ```
-Email-Classifier-AI/
+Smart-Email-Classification-App/
 │
 ├── app.py                                # Main Streamlit application
-├── .env                                  # Secret API Keys (ignored by Git)
+├── .env                                  # Secret API Keys (not in Git, need to be manually created)
 ├── requirements.txt                      # Required Python dependencies
-├── Dockerfile                            # Docker setup for Hugging Face deployment
 ├── README.md                             # Project documentation
+├── pyproject.toml                        # Defines project's intended dependencies which is the single truth source
+├── Dockerfile                            # Docker setup for Hugging Face deployment
 └── .gitignore                            # Ignored files
 ```
 
@@ -67,13 +69,24 @@ Create a `.env` file in your project root:
 HF_TOKEN=<Your HF Token>
 MODEL_REPO=kaisarhossain/email-classifier-distilbert-finetuned-kaisar
 ```
+---
+
+## 4️⃣ GitHub + PyCharm Workflow (Safe)
+1. Clone / open project in PyCharm
+2. Set up Git: Preferences → Version Control → Git
+3. Authenticate with PAT: Preferences → GitHub → Log in via Token
+4. Pull remote changes first: git pull origin main --rebase
+5. Make changes → commit:
+6. git add .
+git commit -m "Your commit message"
+7. Push changes: git push origin main
 
 ---
 
 ## ▶️ Run the App Locally
 
 ```bash
-streamlit run app_v1.py
+streamlit run app.py
 ```
 
 The app will launch automatically in your browser at:
@@ -104,7 +117,7 @@ RUN pip install -r requirements.txt
 EXPOSE 8501
 
 # Run Streamlit app
-CMD ["streamlit", "run", "email_classifier_streamlit_app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
 ```
 
 ### 2️⃣ Push to Hugging Face Space
@@ -126,7 +139,6 @@ CMD ["streamlit", "run", "email_classifier_streamlit_app.py", "--server.port=850
 ---
 
 ## 💡 Future Enhancements
-- Add email body + subject dual-input model  
 - Integrate real-time Gmail API ingestion  
 - Add multilingual email classification  
 - Enable fine-tuning with user-specific data  
@@ -166,3 +178,8 @@ short_description: Smart-Email-Classification-App
 
 Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
 >>>>>>> f3f984eb444ce50d2f26830c247442faab422fb5
+
+
+
+
+

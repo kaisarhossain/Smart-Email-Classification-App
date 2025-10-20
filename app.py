@@ -182,15 +182,30 @@ st.markdown("## 📥 Inbox")
 st.markdown("---")
 col1, col2, col3 = st.columns([2, 3, 2])
 
+# with col1:
+#     st.markdown("#### 📩 Inbox")
+#     selected_email = st.radio(
+#         "Choose an email to view:",
+#         range(len(inbox_df)),
+#         format_func=lambda i: inbox_df.iloc[i]["Subject"],
+#         label_visibility="collapsed",
+#         index=None
+#     )
+
 with col1:
     st.markdown("#### 📩 Inbox")
-    selected_email = st.radio(
-        "Choose an email to view:",
-        range(len(inbox_df)),
-        format_func=lambda i: inbox_df.iloc[i]["Subject"],
-        label_visibility="collapsed",
-        index=None
-    )
+    if not inbox_df.empty:
+        # Ensure first email is selected by default
+        selected_email = st.radio(
+            "Choose an email to view:",
+            range(len(inbox_df)),
+            format_func=lambda i: inbox_df.iloc[i]["Subject"],
+            label_visibility="collapsed",
+            index=0  # default to first email
+        )
+    else:
+        st.info("No emails available in the inbox.")
+        selected_email = None
 
 with col2:
     st.markdown("#### ✉️ Email Details")
