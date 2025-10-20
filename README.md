@@ -99,25 +99,43 @@ http://localhost:8501
 ## 🐳 Deploying on Hugging Face (Docker Method)
 
 ### 1️⃣ Create a `Dockerfile`
-Example:
+
 ```dockerfile
-# Base image
-FROM python:3.10
+## Use the official Python 3.12 image
+FROM python:3.12
 
-# Set working directory
-WORKDIR /app
+## Set the working directory to /code
+WORKDIR /code
 
-# Copy project files
-COPY . .
+## Copy the current directory contents into the container at /code
+COPY ./requirements.txt /code/requirements.txt
+#COPY --chown=user ./requirements.txt requirements.txt
 
-# Install dependencies
-RUN pip install -r requirements.txt
+## Run requirements.txt
+RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
-# Expose Streamlit port
-EXPOSE 8501
+#COPY --chown=user . /app
+#CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "7860"]
 
-# Run Streamlit app
-CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+## Setting up new user named "user"
+RUN useradd user
+#RUN useradd -m -u 1000 user
+## Switch to the user "user"
+USER user
+
+## Set the home directory to user's home directory
+#ENV PATH="/home/user/.local/bin:$PATH"
+ENV HOME=/home/user \
+    PATH=/home/user/.local/bin:$PATH
+
+## Set the working directory to the user's home directory
+WORKDIR $HOME/app
+
+## Copy the current directory contents into the container at $HOME/app
+COPY --chown=user . $HOME/app
+
+## Starting the FastAPI App on port 7860
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "7860"]
 ```
 
 ### 2️⃣ Push to Hugging Face Space
@@ -125,7 +143,7 @@ CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0
 - Create a new **Hugging Face Space** → Select **Docker** as the SDK.  
 - Connect your **GitHub repository** or upload the project manually.  
 - Hugging Face automatically builds and runs your app.
-- In case if you face to push HF deployment using Git, I would highly recommend to check my below Git reference for HF deployment document:
+- In case if you face any issue to push HF deployment using Git, I would highly recommend to check my below Git reference document on HF deployment:
   - https://github.com/kaisarhossain/Git-Reference-for-Hugging-Face-HF-GitHub-Deployments/tree/main
 
 ---
